@@ -2,22 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyecto1.edds;
+package EDD;
 
 /**
  *
  * @author jorge
  */
-public class nodos {
+public class Nodo {
      private Object dato; 
-     private nodos pnext; 
+     private Nodo pnext; 
     
-    public nodos(){
+    public Nodo(){
        this.dato = null;
        this.pnext = null; 
     }
     
-    public nodos(Object dato) {
+    public Nodo(Object dato) {
         this.dato = dato;
         this.pnext = null;
     }
@@ -31,11 +31,11 @@ public class nodos {
         this.dato = dato;
     }
 
-    public nodos getPnext() {
+    public Nodo getPnext() {
         return pnext;
     }
 
-    public void setPnext(nodos pnext) {
+    public void setPnext(Nodo pnext) {
         this.pnext = pnext;
     }
 }
