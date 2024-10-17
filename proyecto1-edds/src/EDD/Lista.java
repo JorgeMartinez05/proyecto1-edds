@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package EDD;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author jorge
@@ -48,5 +48,94 @@ public class Lista {
         pFirst = null;
         size = 0;
     }
+     public Nodo insertarInicio(Object dato){
+        
+        Nodo pNew = new Nodo();
+        pNew.setDato(dato);
+       
+        if (isEmpty()) {   
+            pFirst = pNew;
+        } else{
+            pNew.setPnext(pFirst);
+            pFirst = pNew;
+        }
+        size++;
+        return pNew;
+    }
     
+
+
+    //Metodo para añadir al final
+    public void insertarFinal(Object dato){
+        Nodo pNew = new Nodo(dato);
+        if(isEmpty()){
+            pFirst = pNew;
+        }else{
+            Nodo aux = pFirst;
+            while (aux.getPnext() != null){
+                aux = aux.getPnext();
+            }
+            aux.setPnext(pNew);
+        }
+        size++;
+    }
+    
+    public void mostrar(){
+        if (!isEmpty()){
+            Nodo aux = pFirst;
+            String expresion = "";
+            while(aux != null){
+               expresion = expresion + aux.getDato().toString() + "\n";
+               aux = aux.getPnext();
+            }
+            JOptionPane.showMessageDialog(null,expresion);
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
+        }
+    }
+    
+    //Funcion para eliminar al inicio
+    public boolean eliminarInicio(){
+        if(!isEmpty()){
+            pFirst = pFirst.getPnext();
+            size--;
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    /**
+     *
+     */
+    public void eliminarFinal(){
+        if(!isEmpty()){
+            if (getSize()==1) {
+                eliminar();
+            }else{
+                Nodo pointer = getpFirst();
+                while(pointer.getPnext() != null && pointer.getPnext().getPnext()!= null){
+                    pointer = pointer.getPnext();
+                }
+                pointer.setPnext(null);
+            }
+            size --;
+        }  
+    }
+    
+       // Funcion para buscar un elemento en la lista
+    public boolean buscar(Object referencia){
+        Nodo aux = pFirst;
+        boolean encontrado = false;
+        while(aux != null && encontrado != true){
+            if (referencia == aux.getDato()){ 
+                encontrado = true;
+            }
+            else{
+                aux = aux.getPnext();
+            }
+        }
+        return encontrado;
+    }
 }
