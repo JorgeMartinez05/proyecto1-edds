@@ -239,7 +239,7 @@ public class Lista {
         }
     }
     
-    //Metodo para editar el valor de un nodo en una posicion
+    //Se edita el valor de un nodo en una posicion
     public void editar_por_posicion(int posicion , Object dato){
 
         if(posicion>=0 && posicion<size){
@@ -256,4 +256,91 @@ public class Lista {
             }
         }
     }
+    public Object getValor(int posicion){
+
+        if(posicion>=0 && posicion<size){
+            
+            if (posicion == 0) {
+                return pFirst.getDato();
+            }else{
+                Nodo aux = pFirst;
+                for (int i = 0; i < posicion; i++) {
+                    aux = aux.getPnext();
+                }
+                return aux.getDato();
+            }
+        }
+        return null;
+    }
+    
+        //Metodo para obtener un nodo en una determinada posición
+    public Nodo getNodo(int posicion){
+
+        if(posicion>=0 && posicion<size){
+            
+            if (posicion == 0) {
+                return pFirst;
+            }else{
+                Nodo aux = pFirst;
+                for (int i = 0; i < posicion; i++) {
+                    aux = aux.getPnext();
+                }
+                return aux;
+            }
+        }
+        return null;
+    }
+    
+    //Retorna la posicion de un nodo
+    public int getIndex (Nodo nodito){
+        if (!isEmpty()){
+            Nodo aux = pFirst;
+            int count = 0;
+            while(aux != null){
+                
+                if (nodito == aux){
+                    return count;     // memoria del nodo
+                }
+                count ++;
+                aux = aux.getPnext();
+            }
+            return -1;
+        }
+    return -1;
+    }
+    
+    //La posición de un elemento se consulta en la lista
+    public int getPosicion(Object referencia){
+
+        if (buscar(referencia)) {
+            
+            Nodo aux = pFirst;
+            int cont = 0;
+            while(referencia != aux.getDato()){
+                cont ++;
+                aux = aux.getPnext();
+            }
+            return cont;
+        } else {
+            return -1;
+        }
+    }
+    
+    //Metodo para transformar una lista en cadena de caracteres
+    public String transformar(){
+        if(!isEmpty()){
+            
+            Nodo aux = pFirst;
+            String expresion = "";
+            
+            for(int i = 0; i <size;i++){
+            expresion += aux.getDato().toString() + "\n";
+            aux = aux.getPnext();
+            }
+            return expresion;
+        }
+        return "Lista vacia";
+    }
+    
+    
 }
