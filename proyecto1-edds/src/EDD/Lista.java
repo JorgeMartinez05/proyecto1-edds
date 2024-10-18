@@ -138,4 +138,122 @@ public class Lista {
         }
         return encontrado;
     }
+    public void insertar_por_posicion(int posicion, Object valor){
+        if(posicion>=0 && posicion<size){
+            Nodo nuevo = new Nodo(valor);
+            if(posicion == 0){
+                nuevo.setPnext(pFirst);
+                pFirst = nuevo;
+            }
+            else{
+                if(posicion == size-1){
+                    Nodo aux = pFirst;
+                    while(aux.getPnext() != null){
+                        aux = aux.getPnext();
+                    }
+                    aux.setPnext(nuevo);              
+                }
+                else{
+                    Nodo aux = pFirst;
+                    for (int i = 0; i < (posicion-1); i++) {
+                        aux = aux.getPnext();
+                    }
+                    Nodo siguiente = aux.getPnext();
+                    aux.setPnext(nuevo);
+                    nuevo.setPnext(siguiente);
+                }
+            }
+            size++;
+        }
+    }
+    
+    //Metodo para Insertar por referencia
+    public void insertar_por_referencia(Object ref,Object valor){
+        
+        Nodo nuevo = new Nodo();
+        nuevo.setDato(valor);
+        
+        if (!isEmpty()) {
+            if (buscar(ref)) {
+                Nodo aux = pFirst;
+                // La lista es recorrida hasta llegar al nodo de referencia.
+                while (aux.getDato() != ref) {
+                    aux = aux.getPnext();
+                }
+                // Se crea un respaldo de la continuación de la lista.
+                Nodo siguiente = aux.getPnext();
+                // Enlaza el Nodo nuevo despues del Nodo de referencia.
+                aux.setPnext(nuevo);
+                // Une la continuacion de la lista al nuevo nodo.
+                nuevo.setPnext(siguiente);
+            
+                size++;
+            }
+        }
+    }
+    
+    
+    
+    public void eliminar_por_referencia(Object referencia){
+
+        if (buscar(referencia)) {
+            if (pFirst.getDato() == referencia) {
+                pFirst = pFirst.getPnext();
+            } else{
+                Nodo aux = pFirst;
+                while(aux.getPnext().getDato() != referencia){
+                    aux = aux.getPnext();
+                }
+                Nodo siguiente = aux.getPnext().getPnext();
+                aux.setPnext(siguiente);  
+            }
+            size--;
+        }
+    }
+    
+    public void eliminar_por_posicion(int posicion){
+
+        if(posicion>=0 && posicion<size){
+            if(posicion == 0){
+                pFirst = pFirst.getPnext();
+            }
+            else{
+                Nodo aux = pFirst;
+                for (int i = 0; i < posicion-1; i++) {
+                    aux = aux.getPnext();
+                }
+                Nodo siguiente = aux.getPnext();
+                aux.setPnext(siguiente.getPnext());
+            }
+            size--;
+        }
+    }
+    
+    public void editar_por_referencia(Object referencia, Object dato){
+        if (buscar(referencia)) {
+            Nodo aux = pFirst;
+            while(aux.getDato() != referencia){
+                aux = aux.getPnext();
+            }
+            aux.setDato(dato);
+        }
+    }
+    
+    //Metodo para editar el valor de un nodo en una posicion
+    public void editar_por_posicion(int posicion , Object dato){
+
+        if(posicion>=0 && posicion<size){
+            if(posicion == 0){
+                pFirst.setDato(dato);
+            }
+            else{
+                Nodo aux = pFirst;
+
+                for (int i = 0; i < posicion; i++) {
+                    aux = aux.getPnext();
+                }
+                aux.setDato(dato);
+            }
+        }
+    }
 }
