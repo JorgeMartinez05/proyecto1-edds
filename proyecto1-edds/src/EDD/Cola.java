@@ -76,5 +76,19 @@ public class Cola {
         }
     }
     
+    public void destruir() {
+        cabeza = null;
+        cola = null; 
+        size = 0;
+    }
     
+    public void listar() {
+        Nodo aux = cabeza; 
+        String pila = "COLA:\n";
+        while (aux != null) {
+            pila = pila + aux.getDato() + "\n";
+            aux = aux.getPnext();
+        }
+        System.out.println(pila);
+    }
 }
